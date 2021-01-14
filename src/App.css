@@ -1,0 +1,65 @@
+body{
+  background-color: #bbb;
+}
+#root{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#drum-machine{
+  background: #ddd;
+  min-height: 300px;
+  min-width: 500px;
+  border: 5px solid darkred;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-radius: 10px;
+}
+#sounds-panel{
+  margin: 1em;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+.drum-pad{
+  cursor: pointer;
+  font-weight: bolder;
+  height: 60px;
+  width: 80px;
+  display: flex;
+  justify-content: center;
+  box-shadow: 5px 5px 2px 1px black;
+  align-items: center;
+  background-color: #616a6b;
+  margin-left: 1em;
+  margin-top: 1em;
+  border-radius: 10px;
+}
+.pulsed{
+  background-color: darkred;
+  color: white;
+  cursor: pointer;
+  font-weight: bolder;
+  height: 60px;
+  width: 80px;
+  display: flex;
+  justify-content: center;
+  box-shadow: 5px 5px 2px 1px black;
+  align-items: center;
+  margin-left: 1em;
+  margin-top: 1em;
+  border-radius: 10px;
+}
+#display{
+  background-color: #282e2e;
+  color: white;
+  text-align: center;
+  height: 1.5em;
+  width: 90%;
+}
+#control-panel{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
