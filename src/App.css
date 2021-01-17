@@ -1,5 +1,5 @@
 body{
-  background-color: #bbb;
+  background-color: #373737;
 }
 #root{
   height: 100vh;
@@ -11,7 +11,7 @@ body{
   background: #ddd;
   min-height: 300px;
   min-width: 500px;
-  border: 5px solid darkred;
+  border: 5px solid #CC0000;
   display: grid;
   grid-template-columns: 1fr 1fr;
   border-radius: 10px;
@@ -29,7 +29,7 @@ body{
   width: 80px;
   display: flex;
   justify-content: center;
-  box-shadow: 5px 5px 2px 1px black;
+  box-shadow: 5px 5px 2px 1px #0B0A0A;
   align-items: center;
   background-color: #616a6b;
   margin-left: 1em;
@@ -37,7 +37,7 @@ body{
   border-radius: 10px;
 }
 .pulsed{
-  background-color: darkred;
+  background-color: #CC0000;
   color: white;
   cursor: pointer;
   font-weight: bolder;
@@ -55,11 +55,18 @@ body{
   background-color: #282e2e;
   color: white;
   text-align: center;
-  height: 1.5em;
-  width: 90%;
+  width: 70%;
+  padding: 10px 0px;
+  border-radius: 10px;
 }
 #control-panel{
   display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
-  justify-content: center;
+}
+#power{
+  width: 40px;
+  height: 20px;
+  background-color: darkgreen;
 }
