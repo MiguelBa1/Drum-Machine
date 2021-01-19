@@ -1,6 +1,5 @@
 import './App.css';
 import React, { useEffect, useState } from 'react'
-//Array de objetos!!!
 const audios = [
   {
     key: 'Q',
@@ -66,10 +65,8 @@ function Display(props) {
   )
 }
 
-//tengo que hacer funcionar con los botones, obtener el audio element mediante el id, dentro del componente App
 function DrumPad(props) {
   function playAudio(event) {
-      console.log(props.power)
     if (props.power) {
       props.setText(event.target.id)
       event.target.firstElementChild.play()
@@ -95,7 +92,7 @@ function DrumPad(props) {
 function App() {
   const [displayText, setText] = useState('Play!')
   const [power, setPower] = useState(true)
-  const [count, setCount] = useState(0)
+
   const handlePower = (event) => {
     if (power) {
       event.target.style.background = '#CC0000'
@@ -105,37 +102,48 @@ function App() {
       setPower(true)
     }
   }
-  const handleKeyDown = ((event) => {
-    const elmt = (document.getElementById(event.key.toUpperCase()))
-      console.log(power)
-    if (elmt && power) {
-      setText(elmt.parentNode.id)
-      elmt.play()
-      elmt.parentNode.className = 'pulsed'
-      setTimeout(() => {
-        elmt.parentNode.className = 'drum-pad'
-      }, 100)
+
+  const handleVolume = (event) => {
+    const elements = document.getElementById('sounds-panel').children
+    setText('Volume: ' + event.target.value)
+    for (let obj of elements){
+      obj.firstElementChild.volume = event.target.value / 100
     }
-  })
-/*la vuelta aqui fue que siempre hay que desmontar el eventListener,
- sino eso toma el valor de power que hay en un inicio siempre, tambien
- es importante el segundo argumento de useEffect para que se renderice otra vez
- */
+  }
+
   useEffect(() => {
+    const handleKeyDown = ((event) => {
+      const elmt = (document.getElementById(event.key.toUpperCase()))
+      if (elmt && power) {
+        setText(elmt.parentNode.id)
+        elmt.play()
+        elmt.parentNode.className = 'pulsed'
+        setTimeout(() => {
+          elmt.parentNode.className = 'drum-pad'
+        }, 100)
+      }
+    })
     document.addEventListener('keydown', handleKeyDown) 
-    setCount(count + 1)
     return () => {
       document.removeEventListener('keydown', handleKeyDown)
     }
   }, [power])
+
   return (
     <div id="drum-machine" >
       <div id="sounds-panel">
         <DrumPad power={power} setText={setText}/> 
       </div>
       <div id="control-panel">
-        <div id="power" onClick={handlePower}></div>
+        <div>
+          <div>Power</div>
+          <div id="power" onClick={handlePower}></div>
+        </div>
         <Display text={displayText}/>
+        <div className="volume-control">
+          <div>Volume</div>
+          <input type="range" min="0" max="100" className="slider" id="myRange" onChange={handleVolume}></input>
+        </div>
       </div>
     </div>
   )
